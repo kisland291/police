@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.5,maximum-scale=2,user-scalable=yes" />
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+ integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+ crossorigin="anonymous"></script>
+ 
+ 
+<style>
+body{
+ Margin:0;
+}
+#ddd {
+	width:400px;
+	height:1280px;
+	border:1px solid #000;
+}
+#char {
+	width:400px;
+	height:400px;
+	overflow:hidden;
+}
+#text {
+	width:400px;
+	height:400px;
+}
+#photo {
+}
+div{
+box-sizing:border-box;
+border:1px solid #000;
+}
+/*
+device-width
+text-align:center;
+border:1px solid #000;
+*/
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(e){
+	console.log("DOMContentLoaded");
+});
+
+
+$(function(){});
+$(()=>{
+	//
+});
+
+$(document).ready(function() {
+	console.log('jq ready');
+
+	poi();
+});
+var 對話狀態;
+var 場景狀態;
+var 狀態={'對話狀態':對話狀態,'場景狀態':場景狀態,};
+
+	//console.log( 狀態 );
+	//console.log( 狀態.對話狀態 );
+
+var 劇情資料;
+	劇情資料={
+		0:[
+			"緊急狀況！各位同志！↵↵我們發現我們組織中出了一個叛徒",
+			'http://i0.wp.com/upload.cc/i1/2020/04/18/gk0rUj.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		1:[
+			'元首你是了解我的，我從來不做仗勢欺人的事↵我喜歡被動',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/OaYnsp.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		2:[
+			'元首你是了解我的，以我的習慣，萬事不求人',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/bCUxsH.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		3:[
+			'元首你是了解我的，我大隊長至今…俗稱處男',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/cL0aMP.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		3:[
+			'元首你是了解我的↵如果是我↵不好有活著的人來告狀',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/ly4UBA.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		4:[
+			'元首你是了解我的，如果是我出手，那趴在桌子上的，應該是他老公',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/z7Jb9Y.jpg?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		5:[
+			'老公你最好說明一下',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/j7EUBZ.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		6:[
+			'元首你是了解我的，我現在全套已經不給中出了↵中出要加錢的',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/mTELHu.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		7:[
+			'元首你是了解我的，我只會舔舔明日香而已',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/VAPaWc.jpg?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		8:[
+			'元首你是了解我的，我只是一隻貓',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/ArEIWs.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		9:[
+			'元首你是了解我的，我…我…窩…窩叭江南STYLE~!',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/ZEmYqT.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		10:[
+			'元首你是了解我的，我只是想露個奶而已',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/YnE7yl.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		11:[
+			'我們組織中出了一個叛徒!↵↵報告元首 女警隊已經將其處決! 犯人在男警隊中!',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/aKu9nq.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+		12:[
+			'元首你是了解我的，我……我不知道………',
+			'https://i0.wp.com/upload.cc/i1/2020/04/18/nCbk7Y.png?w=300',
+			{'width':'300px','height':'200px','position':'relative','top':'50px','left':'50px','display':'block',},
+		],
+	};
+
+
+
+
+	
+	console.log( 劇情資料 );
+
+function poi(){
+	$('#ddd').html('');//初始化
+	狀態.對話狀態=0;
+	狀態.場景狀態=0;
+	console.log( 狀態 );
+	
+	var ff=function(e){
+		console.log( "click22",狀態);
+		if(狀態.對話狀態=='講話中'){
+			console.log( "click+講話中");
+			字數計算=字數計算+999;
+		}
+		if(狀態.對話狀態=='對話結束'){
+			console.log( "click+對話結束");
+			狀態.場景狀態=狀態.場景狀態+1;
+			if( 劇情資料[狀態.場景狀態] ){
+				console.log( "下一個場景");
+				poi_chat();//產生對話
+				poi_photo();//產生頭像
+			}
+		
+		}
+	}
+	$( "#ddd" ).on( "click", ff);
+	
+
+
+	//return;
+	
+	
+	poi_imgpreload();//產生區塊
+	poi_text();//產生區塊
+	poi_char();//產生區塊
+	//
+	poi_chat();//產生對話
+	poi_photo();//產生頭像
+	
+	
+}
+function poi_imgpreload(){
+	console.log('poi_imgpreload');
+
+	var aa=$('<div>',{
+		'id':'imgpreload',
+	});
+	console.log( aa );
+	$('#ddd').prepend(aa);
+	//
+	var str='';
+	$.each(劇情資料,function(index,item){
+		//console.log( index,item );
+		console.log( item[1] );
+		str=str+'<img src="'+item[1]+'">';
+	});
+	$('#imgpreload').html(str);
+	$('#imgpreload>img').css({
+		'width':'100px',
+		'height':'100px',
+	});
+	
+
+}
+function poi_char(){
+	//console.log('poi');
+	var aa=$('<div>',{
+		'id':'char',
+	});
+	console.log( aa );
+	$('#ddd').prepend(aa);
+	//$('#char').html('#char');
+}
+function poi_text(){
+	//console.log('poi');
+	var aa=$('<div>',{
+		'id':'text',
+	});
+	console.log( aa );
+	$('#ddd').prepend(aa);
+	//$('#text').html('#text');
+}
+////
+var 字數計算;
+function poi_chat(){
+	//var str="緊急狀況！各位同志！↵↵我們發現我們組織中出了一個叛徒";
+	//場景狀態=場景狀態+1;
+	var str=劇情資料[狀態.場景狀態][0];
+	//console.log( str );
+	//console.log( str.length );
+	
+	字數計算=0;
+	//var 狀態;
+    var show_text=function(){
+		狀態.對話狀態='講話中';
+		var timeoutID =window.setTimeout(function(e){
+			console.log( 'setTimeout' );
+			if(str.length >= 字數計算){
+				var FFF=str.substr(0,字數計算);
+				FFF=FFF.replace(/↵/g, "<br/>");
+				$('#text').html( FFF );
+				字數計算++;
+				show_text();
+			}else{
+				var FFF=str;
+				FFF=FFF.replace(/↵/g, "<br/>");
+				$('#text').html( FFF+'<sub>▼</sub>' );
+				//console.log( '對話結束' );
+				狀態.對話狀態='對話結束';
+			}
+		}, 0.1*1000);
+		//console.log( timeoutID );//6
+    }
+	show_text();
+	
+
+
+}
+////
+function poi_photo(){
+	//console.log( in1,in2 );//6
+	//var str="//i0.wp.com/upload.cc/i1/2020/04/18/gk0rUj.png?w=300";
+	//場景狀態=場景狀態+1;
+	var src=劇情資料[狀態.場景狀態][1];
+	var str=劇情資料[狀態.場景狀態][2];
+	
+	console.log( $('#photo') );
+	
+	if( $('#photo').length ){
+		//
+	}else{
+		var aa=$('<div>',{
+			'id':'photo',
+		});
+		$('#char').append( aa );
+		$('#photo').html('photo');
+		$('#photo').css( str );
+	}
+	
+	if( $('#photo_img').length ){
+		$('#photo_img').attr('src',src);
+	}else{
+		var bb=$('<img>',{
+			'id':'photo_img',
+			'src':src,
+			'width':'100%',
+			'height':'auto',
+		});
+		$('#photo').html( bb );
+	}
+	
+/*
+		'max-width':'100%',
+		'max-height':'100%',
+
+*/	
+	
+	
+}
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+<div id='ddd'>ddd</div>
+
+</body>
+</html>
